@@ -20,7 +20,7 @@
 
 ## Creational:
 
-**Singleton **
+1. **Singleton**
 
 ## Structural:
 
