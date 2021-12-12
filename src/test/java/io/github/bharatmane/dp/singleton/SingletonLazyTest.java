@@ -1,4 +1,4 @@
-package io.github.bharatmane.designpatterns;
+package io.github.bharatmane.dp.singleton;
 
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.junit.jupiter.api.DisplayName;
@@ -40,31 +40,32 @@ class SingletonLazyTest {
 
     @Test
     @DisplayName("Should demonstrate that this is not thread safe")
-    void  shouldDemonstrateThatThisIsNotThreadSafe() {
+    void  shouldDemonstrateThatThisIsNotThreadSafe() throws InterruptedException {
 
         //Given
         final SingletonLazy[] singletonLazyArray = new SingletonLazy[2];
         //When
-        Runnable myRunnable1 =
-                () -> {
+        Thread thread1 =
+               new Thread(() -> {
                     try {
                         singletonLazyArray[0] = SingletonLazy.getInstance();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                };
-        Runnable myRunnable2 =
-                () -> {
+                });
+        Thread thread2 =
+                new Thread(() -> {
                     try {
                         singletonLazyArray[1] = SingletonLazy.getInstance();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                };
-        myRunnable1.run();
-        myRunnable2.run();
+                });
+       thread1.start();
+        thread2.start();
+       Thread.sleep(2000);
         //Then
-        assertThat(singletonLazyArray[0]).hasSameHashCodeAs(singletonLazyArray[1]);
+        assertThat(singletonLazyArray[0]).doesNotHaveSameHashCodeAs(singletonLazyArray[1]);
 
     }
 }

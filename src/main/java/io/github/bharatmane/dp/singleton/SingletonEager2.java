@@ -1,4 +1,4 @@
-package io.github.bharatmane.designpatterns;
+package io.github.bharatmane.dp.singleton;
 
 public class SingletonEager2 {
     private static final SingletonEager2 INSTANCE;

@@ -1,4 +1,4 @@
-package io.github.bharatmane.designpatterns;
+package io.github.bharatmane.dp.singleton;
 
 
 import org.junit.jupiter.api.DisplayName;
