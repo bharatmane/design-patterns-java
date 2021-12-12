@@ -68,17 +68,6 @@ class SingletonEagerTest {
 
     }
 
-    @Test
-    @DisplayName("Should demonstrate that this is not thread safe")
-    void  shouldDemonstrateThatThisIsNotThreadSafe() {
-        //Given
-        SingletonEager singletonEager1 = SingletonEager.getInstance();
-        SingletonEager singletonEager2 = SingletonEager.getInstance();
-        //When
 
-        //Then
-        assertThat(singletonEager1).hasSameHashCodeAs(singletonEager2);
-
-    }
 
 }
